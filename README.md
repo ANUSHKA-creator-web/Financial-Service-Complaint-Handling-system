@@ -1,70 +1,86 @@
-# CFCMS - Content Filtering and Classification Management System
 
-## Overview
-This repository contains the implementation of **CFCMS**, a machine learning-based text classification system.  
-The project focuses on preprocessing textual data, extracting features using **TF-IDF** and **word embeddings**, 
-and classifying content using machine learning models such as **Logistic Regression**.  
+# Product Complaint Classification with Bi-LSTM
 
-The system is designed to filter and classify text efficiently, making it useful for applications such as:  
-- Fake news detection  
-- Spam filtering  
-- Sentiment or topic classification  
+This repository provides a Jupyter Notebook implementation for **multiclass classification of financial product complaints** using both **deep learning (Bi-LSTM)** and **classical NLP models**. The goal is to predict the product category from customer complaint text, while addressing challenges such as noisy text and class imbalance.
 
-## Features
-- Text preprocessing (tokenization, stemming, stopword removal, HTML parsing with BeautifulSoup).  
-- Feature extraction using:
-  - Bag-of-Words  
-  - TF-IDF  
-  - Word embeddings (Gensim Word2Vec / Keyed Vectors)  
-- Classification with Scikit-learn models.  
-- Evaluation with metrics such as accuracy, confusion matrix, ROC-AUC, and classification reports.  
-- Parallelized execution using Python's `concurrent.futures`.  
 
-## Project Structure
-- `CFCMS.ipynb` : Main Jupyter Notebook containing the full implementation and experiments.  
-- `requirements.txt` : Python dependencies required to run the project.  
-- `.gitignore` : Git ignore file for clean repository management.  
 
-## Installation
-Clone the repository and install the dependencies:
+## 📌 Project Overview
+
+* Dataset: **162,421 complaints** across **5 financial products**.
+* Primary Model: **Bidirectional LSTM (Bi-LSTM)** for text classification.
+* Benchmarks: Bag-of-Words, n-grams, TF-IDF + Naive Bayes.
+* Imbalance Handling: Random undersampling to improve fairness and accuracy.
+* Full **text preprocessing pipeline** for cleaning real-world complaint data.
+
+---
+
+## Workflow
+
+1. **Introduction** – Problem statement, dataset, objectives.
+2. **Imports** – Core libraries: `pandas`, `numpy`, `matplotlib`, `seaborn`, `scikit-learn`, `tensorflow/keras`, `nltk`.
+3. **Data Loading & Analysis** – Reads `complaintsprocessed.csv`, inspects class distribution.
+4. **Text Preprocessing** – HTML cleaning, stopword removal, lemmatization, regex-based text normalization.
+5. **Imbalance Handling** – Undersampling for balanced training sets.
+6. **Feature Engineering** – Bag-of-Words, n-grams, TF-IDF vectorization.
+7. **Classical Models** – Naive Bayes classification with evaluation metrics.
+8. **Deep Learning (Bi-LSTM)** –
+
+   * Tokenization & padding
+   * Bidirectional LSTM with dropout & batch normalization
+   * Training & evaluation with precision, recall, F1-score
+9. **Results & Visualizations** – Confusion matrices, class reports, accuracy/F1 comparisons.
+10. **Model Saving** – Persists trained models and tokenizers with Pickle and Keras utilities.
+
+---
+
+## ✨ Key Features
+
+* End-to-end **NLP pipeline**: ingestion → preprocessing → modeling → evaluation.
+* **Robust preprocessing** for contractions, HTML tags, special symbols, casing, and stopwords.
+* **Multiple baselines** to benchmark deep learning vs. classical NLP models.
+* Comprehensive **metrics reporting**: accuracy, precision, recall, F1, per-class performance.
+
+---
+
+## ⚙️ Requirements
+
+* Python 3.7+
+* pandas, numpy, matplotlib, seaborn
+* scikit-learn, nltk, regex, beautifulsoup4
+* tensorflow, keras
+* pickle (standard library)
+
+Install dependencies:
 
 ```bash
-git clone https://github.com/your-username/CFCMS.git
-cd CFCMS
-pip install -r requirements.txt
+pip install pandas numpy matplotlib seaborn scikit-learn nltk tensorflow keras beautifulsoup4
 ```
 
-## Usage
-Open the Jupyter Notebook and run all cells:
+---
 
-```bash
-jupyter notebook CFCMS.ipynb
-```
+## 🚀 Usage
 
-Alternatively, convert the notebook into a Python script:
+1. Place the dataset file `complaintsprocessed.csv` in the project folder.
+2. Launch the notebook:
 
-```bash
-jupyter nbconvert --to script CFCMS.ipynb
-python CFCMS.py
-```
+   ```bash
+   jupyter notebook
+   ```
+3. Open and run `main.ipynb` step by step.
+4. Adjust preprocessing options or model hyperparameters as needed.
+5. Outputs include:
 
-## Requirements
-See [`requirements.txt`](requirements.txt) for full details. Key packages include:
-- nltk
-- gensim
-- beautifulsoup4
-- scikit-learn
-- scipy
+   * Evaluation metrics and reports
+   * Trained models & tokenizers
+   * Class imbalance visualizations & confusion matrices
 
-## Results
-The notebook provides model evaluation with:  
-- Accuracy scores  
-- Confusion matrix  
-- Classification report  
-- ROC and AUC curves  
+---
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## 📊 Results
 
-## License
-This project is licensed under the MIT License.
+* **Bi-LSTM** achieves higher **accuracy and F1-scores** compared to TF-IDF and Bag-of-Words models.
+* **Class imbalance** handled with undersampling leads to fairer predictions across categories.
+* Notebook provides **transparent metrics and plots** for model comparison.
+
+
