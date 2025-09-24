@@ -1,7 +1,6 @@
 
 # Product Complaint Classification with Bi-LSTM
-
-This repository provides a Jupyter Notebook implementation for **multiclass classification of financial product complaints** using both **deep learning (Bi-LSTM)** and **classical NLP models**. The goal is to predict the product category from customer complaint text, while addressing challenges such as noisy text and class imbalance.
+This project develops an automated system for classifying and routing financial complaints by analyzing their text content using natural language processing and machine learning methods.
 
 
 
